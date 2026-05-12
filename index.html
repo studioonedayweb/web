@@ -223,7 +223,46 @@ h1.hero-title em{font-style:italic;color:var(--gold)}
   animation:fadeUp .9s ease 1s forwards;
 }
 
-.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp .9s ease 1.1s forwards}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp .9s ease 1.25s forwards}
+
+.hero-video-wrap{
+  width:min(860px,92vw);
+  margin:34px auto 42px;
+  border:1px solid rgba(200,146,42,.28);
+  background:rgba(255,255,255,.22);
+  box-shadow:0 26px 70px rgba(58,48,32,.14);
+  border-radius:6px;
+  overflow:hidden;
+  position:relative;
+  opacity:0;
+  animation:fadeUp .9s ease 1.08s forwards;
+}
+
+.hero-video-frame{
+  position:relative;
+  width:100%;
+  aspect-ratio:16/9;
+  background:var(--char2);
+}
+
+.hero-video-frame iframe{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+}
+
+.hero-video-caption{
+  padding:13px 18px 15px;
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:15px;
+  line-height:1.45;
+  color:var(--ink2);
+  background:rgba(245,240,232,.82);
+  border-top:1px solid rgba(200,146,42,.18);
+}
 
 .btn{
   display:inline-flex;
@@ -377,7 +416,7 @@ footer{background:var(--char2);border-top:1px solid rgba(255,255,255,.05);paddin
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
 @media(max-width:900px){nav{padding:16px 24px}.nav-links{display:none}.section-inner{padding:0 24px}.hero-content{padding:120px 24px 80px}.phil-grid,.why-layout,.quote-layout{grid-template-columns:1fr;gap:48px}.build-grid{grid-template-columns:1fr}.system-points{grid-template-columns:1fr 1fr}.how-steps{grid-template-columns:1fr 1fr;gap:40px}.how-steps::before{display:none}.contact-grid{grid-template-columns:1fr 1fr}.demo-cards{grid-template-columns:1fr}.card-gallery-grid,.card-gallery-grid.back{grid-template-columns:1fr}footer{flex-direction:column;gap:20px;text-align:center;padding:32px 24px}.footer-links{justify-content:center}.form-row{grid-template-columns:1fr}}
-@media(max-width:480px){.system-points{grid-template-columns:1fr}.contact-grid{grid-template-columns:1fr}.hero-btns{flex-direction:column;align-items:center}.demo-thumb{height:200px}}
+@media(max-width:480px){.system-points{grid-template-columns:1fr}.contact-grid{grid-template-columns:1fr}.hero-btns{flex-direction:column;align-items:center}.demo-thumb{height:200px}.hero-video-wrap{margin:26px auto 34px}.hero-video-caption{font-size:13px;padding:11px 14px 13px}}
 </style>
 </head>
 
@@ -405,6 +444,14 @@ footer{background:var(--char2);border-top:1px solid rgba(255,255,255,.05);paddin
     <div class="hero-studio">Artist-led digital presence</div>
     <p class="hero-tagline">A website in a day.<br>An identity for years.</p>
     <p class="hero-sub">Artist-led web design for small businesses, independent professionals and creative brands.</p>
+
+    <div class="hero-video-wrap">
+      <div class="hero-video-frame">
+        <iframe src="https://drive.google.com/file/d/1QuO7FtuRCb9sQYLqDacE_u5AaAGK5_C6/preview" allow="autoplay; fullscreen" allowfullscreen title="ONE DAY WEB STUDIO process video"></iframe>
+      </div>
+      <div class="hero-video-caption">From atmosphere to structure: a glimpse of the creative process behind a digital identity.</div>
+    </div>
+
     <div class="hero-btns">
       <a href="#quote" class="btn btn-primary">Request a Quote</a>
       <a href="#demo" class="btn btn-outline">View Demo</a>
