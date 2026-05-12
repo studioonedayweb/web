@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Glasnevin Appliance Services – Business Card Showcase</title>
+
+<style>
+
+:root{
+  --col-dark:#111418;
+  --col-mid:#3d4550;
+  --col-light:#6b7280;
+  --col-border:#d5d8dc;
+  --col-accent:#1c3f6e;
+  --col-alt:#c8a84b;
+  --col-pale:#f4f5f6;
+  --font:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+
+  --card-w:323px;
+  --card-h:209px;
+}
+
+*,
+*::before,
+*::after{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:var(--font);
+  background:#c8cbd2;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:52px;
+  padding:52px 24px;
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+
+.side-label{
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  color:#555;
+  margin-bottom:8px;
+  text-align:center;
+}
+
+/* ══════════════════════════════════════
+   CARD WRAPPER
+══════════════════════════════════════ */
+
+.card-wrap{
+  position:relative;
+  width:calc(var(--card-w) + 24px);
+  height:calc(var(--card-h) + 24px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.card-wrap::before,
+.card-wrap::after,
+.card-wrap .crop-bl,
+.card-wrap .crop-br{
+  content:'';
+  position:absolute;
+  width:10px;
+  height:10px;
+  border-color:#999;
+  border-style:solid;
+}
+
+.card-wrap::before{
+  top:0;
+  left:0;
+  border-width:1px 0 0 1px;
+}
+
+.card-wrap::after{
+  top:0;
+  right:0;
+  border-width:1px 1px 0 0;
+}
+
+.card-wrap .crop-bl{
+  bottom:0;
+  left:0;
+  border-width:0 0 1px 1px;
+}
+
+.card-wrap .crop-br{
+  bottom:0;
+  right:0;
+  border-width:0 1px 1px 0;
+}
+
+/* ══════════════════════════════════════
+   CARD
+══════════════════════════════════════ */
+
+.card{
+  width:var(--card-w);
+  height:var(--card-h);
+  overflow:hidden;
+  position:relative;
+  font-size:8px;
+  box-shadow:0 4px 20px rgba(0,0,0,.22);
+}
+
+/* ══════════════════════════════════════
+   FRONT
+══════════════════════════════════════ */
+
+.card-front{
+  background:#fff;
+  display:flex;
+  flex-direction:row;
+}
+
+.card-front::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:3px;
+  background:var(--col-accent);
+  z-index:10;
+}
+
+.front-text{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:16px 14px 13px 16px;
+  position:relative;
+  background:#fff;
+}
+
+.front-text::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(#e5e8ec 1px, transparent 1px),
+    linear-gradient(90deg, #e5e8ec 1px, transparent 1px);
+  background-size:16px 16px;
+  opacity:.18;
+  pointer-events:none;
+}
+
+.front-text > *{
+  position:relative;
+  z-index:1;
+}
+
+.front-photo{
+  width:95px;
+  flex-shrink:0;
+  position:relative;
+  overflow:hidden;
+}
+
+.front-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+  filter:brightness(.92) saturate(.9);
+}
+
+.front-photo::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg, rgba(255,255,255,.35) 0%, transparent 30%);
+}
+
+.photo-badge{
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  background:linear-gradient(transparent, rgba(17,20,24,.82));
+  color:#fff;
+  font-size:6px;
+  font-weight:700;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+  padding:14px 6px 6px;
+  text-align:center;
+  line-height:1.5;
+}
+
+.photo-years{
+  position:absolute;
+  top:7px;
+  right:6px;
+  background:var(--col-alt);
+  color:#fff;
+  border-radius:50%;
+  width:26px;
+  height:26px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+  line-height:1;
+}
+
+.photo-years .yn{
+  font-size:9px;
+}
+
+.photo-years .yl{
+  font-size:4.5px;
+  letter-spacing:.3px;
+  text-transform:uppercase;
+}
+
+.card-name{
+  font-size:12.5px;
+  font-weight:800;
+  color:var(--col-dark);
+  line-height:1.2;
+  letter-spacing:-.2px;
+  margin-bottom:2px;
+}
+
+.card-name span{
+  color:var(--col-accent);
+}
+
+.card-tagline{
+  font-size:6.5px;
+  font-weight:600;
+  letter-spacing:1.4px;
+  text-transform:uppercase;
+  color:var(--col-light);
+  margin-bottom:8px;
+}
+
+.card-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:3px;
+}
+
+.card-tag{
+  background:var(--col-pale);
+  border:1px solid var(--col-border);
+  color:var(--col-mid);
+  font-size:6px;
+  font-weight:600;
+  letter-spacing:.7px;
+  text-transform:uppercase;
+  padding:2px 5px;
+  border-radius:2px;
+}
+
+.card-contact{
+  line-height:1.65;
+}
+
+.card-phone{
+  font-size:13px;
+  font-weight:800;
+  color:var(--col-dark);
+  display:block;
+  margin-bottom:2px;
+}
+
+.card-line{
+  font-size:7.5px;
+  color:var(--col-mid);
+  display:block;
+  line-height:1.5;
+}
+
+.card-line.muted{
+  color:var(--col-light);
+  font-size:6.8px;
+}
+
+.front-accent{
+  position:absolute;
+  left:0;
+  top:14px;
+  bottom:12px;
+  width:2.5px;
+  background:var(--col-accent);
+  opacity:.15;
+}
+
+/* ══════════════════════════════════════
+   BACK
+══════════════════════════════════════ */
+
+.card-back{
+  background:var(--col-dark);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:14px 18px 12px;
+  text-align:center;
+  position:relative;
+}
+
+.card-back::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:3px;
+  background:var(--col-alt);
+}
+
+.card-back::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size:18px 18px;
+}
+
+.card-back > *{
+  position:relative;
+  z-index:1;
+}
+
+.back-name{
+  font-size:8px;
+  font-weight:800;
+  color:#fff;
+  letter-spacing:.8px;
+  text-transform:uppercase;
+}
+
+#qr-img{
+  border-radius:4px;
+  border:2px solid rgba(200,168,75,.35);
+}
+
+.back-scan{
+  font-size:7px;
+  font-weight:600;
+  color:rgba(255,255,255,.7);
+  line-height:1.45;
+}
+
+.back-url{
+  font-size:6.5px;
+  color:var(--col-alt);
+  font-weight:600;
+}
+
+.back-contact{
+  font-size:6.5px;
+  color:rgba(255,255,255,.5);
+}
+
+/* ══════════════════════════════════════
+   SHOWCASE
+══════════════════════════════════════ */
+
+.showcase-section{
+  width:100%;
+  max-width:1080px;
+  display:flex;
+  flex-direction:column;
+  gap:28px;
+}
+
+.preview-grid{
+  width:100%;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(280px,1fr));
+  gap:28px;
+}
+
+.preview-grid figure{
+  background:#eef0f3;
+  border-radius:14px;
+  padding:10px;
+  box-shadow:0 10px 32px rgba(0,0,0,.20);
+}
+
+.preview-grid img{
+  width:100%;
+  display:block;
+  border-radius:10px;
+}
+
+/* ══════════════════════════════════════
+   INSTRUCTIONS
+══════════════════════════════════════ */
+
+.instructions{
+  max-width:420px;
+  font-size:12px;
+  color:#444;
+  background:#fff;
+  border:1px solid #d0d3d8;
+  border-radius:5px;
+  padding:20px 24px;
+  line-height:1.7;
+}
+
+.instructions h3{
+  font-size:12px;
+  font-weight:700;
+  color:#222;
+  margin-bottom:8px;
+  margin-top:12px;
+}
+
+.instructions ul{
+  padding-left:16px;
+}
+
+.instructions li{
+  margin-bottom:4px;
+}
+
+/* ══════════════════════════════════════
+   MOBILE
+══════════════════════════════════════ */
+
+@media (max-width:760px){
+
+  .preview-grid{
+    grid-template-columns:1fr;
+  }
+
+  body{
+    padding:28px 12px;
+  }
+
+}
+
+/* ══════════════════════════════════════
+   PRINT
+══════════════════════════════════════ */
+
+@media print{
+
+  body{
+    background:#fff;
+    padding:0;
+    gap:0;
+  }
+
+  .instructions,
+  .showcase-section{
+    display:none;
+  }
+
+  .card{
+    box-shadow:none;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- FRONT -->
+
+<p class="side-label">Front side</p>
+
+<div class="card-wrap">
+
+<div class="crop-bl"></div>
+<div class="crop-br"></div>
+
+<div class="card card-front">
+
+<div class="front-text">
+
+<div class="front-accent"></div>
+
+<div>
+
+<div class="card-name">
+Glasnevin<br>
+<span>Appliance Services</span>
+</div>
+
+<div class="card-tagline">
+Repairs · Spare Parts · Servicing · Lawnmowers
+</div>
+
+<div class="card-tags">
+<span class="card-tag">Repairs</span>
+<span class="card-tag">Spare Parts</span>
+<span class="card-tag">Servicing</span>
+<span class="card-tag">Lawnmowers</span>
+</div>
+
+</div>
+
+<div class="card-contact">
+<strong class="card-phone">01 857 02 21</strong>
+<span class="card-line">glasnevinappliances@eircom.net</span>
+<span class="card-line">3 St Mobhi Rd, Glasnevin, Dublin 9</span>
+<span class="card-line muted">Mon–Fri 9am–5pm</span>
+</div>
+
+</div>
+
+<div class="front-photo">
+
+<img
+src="https://i.postimg.cc/fT6jJ96X/file-000000009b64720aafde63f822cfb309.png"
+alt="Glasnevin Appliance Services">
+
+<div class="photo-years">
+<span class="yn">17</span>
+<span class="yl">yrs</span>
+</div>
+
+<div class="photo-badge">
+Dublin 9<br>
+Since 2007
+</div>
+
+</div>
+
+</div>
+</div>
+
+<!-- BACK -->
+
+<p class="side-label">Back side</p>
+
+<div class="card-wrap">
+
+<div class="crop-bl"></div>
+<div class="crop-br"></div>
+
+<div class="card card-back">
+
+<div class="back-name">
+Glasnevin Appliance Services
+</div>
+
+<img
+id="qr-img"
+src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://www.glasnevinappliances.ie/"
+width="86"
+height="86"
+alt="QR Code">
+
+<div class="back-scan">
+Scan to visit our website<br>
+for services & contact details
+</div>
+
+<div class="back-url">
+www.glasnevinappliances.ie
+</div>
+
+<div class="back-contact">
+01 857 02 21 · glasnevinappliances@eircom.net
+</div>
+
+</div>
+</div>
+
+<!-- SHOWCASE -->
+
+<section class="showcase-section">
+
+<p class="side-label">Front design variations</p>
+
+<div class="preview-grid">
+
+<figure>
+<img src="https://i.postimg.cc/y8S9zKXk/file-00000000a8c471f48c0f064e62a1fd40.png">
+</figure>
+
+<figure>
+<img src="https://i.postimg.cc/XNHyGqs4/file-000000009adc71f4a2181a216d29fffa.png">
+</figure>
+
+<figure>
+<img src="https://i.postimg.cc/7Ln5xZ5W/file-000000005e6471f4babab37d5eae6688.png">
+</figure>
+
+<figure>
+<img src="https://i.postimg.cc/4xzd5xQF/file-000000008bdc720aa73454d0e2ac956b.png">
+</figure>
+
+</div>
+
+<p class="side-label">Back design variations</p>
+
+<div class="preview-grid">
+
+<figure>
+<img src="https://i.postimg.cc/kG6MtJ5w/file-00000000133071f49dcecb3ff65fba5c.png">
+</figure>
+
+<figure>
+<img src="https://i.postimg.cc/2SFkWXCW/file-00000000c2ac71f489fb9379ce9684aa.png">
+</figure>
+
+</div>
+
+</section>
+
+<!-- INSTRUCTIONS -->
+
+<div class="instructions">
+
+<h3>How to print</h3>
+
+<ul>
+<li>Open in browser → File → Print</li>
+<li>Use 100% scale</li>
+<li>Use 300–350 gsm card stock</li>
+<li>Cut along crop marks</li>
+</ul>
+
+<h3>Website</h3>
+
+<ul>
+<li>www.glasnevinappliances.ie</li>
+</ul>
+
+</div>
+
+</body>
+</html>
