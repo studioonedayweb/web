@@ -60,29 +60,33 @@ a{text-decoration:none;color:inherit;}
 }
 .nav-cta:hover{background:var(--gold)!important;color:#fff!important;}
 
-/* HERO WIDE BANNER */
+/* HERO WIDE BANNER — FIXED: no overflow:hidden, content flows naturally */
 .hero-banner{
   margin-top:58px;
   position:relative;
   width:100%;
-  height:62vh;
-  min-height:380px;
+  min-height:520px;
+}
+.hero-banner-bg{
+  position:absolute;
+  inset:0;
   overflow:hidden;
 }
-.hero-banner img{
+.hero-banner-bg img{
   width:100%;height:100%;
   object-fit:cover;object-position:center 30%;
   display:block;
 }
 .hero-banner-overlay{
   position:absolute;inset:0;
-  background:linear-gradient(to right, rgba(18,16,10,.72) 40%, rgba(18,16,10,.2) 100%);
+  background:linear-gradient(to right, rgba(18,16,10,.78) 45%, rgba(18,16,10,.2) 100%);
 }
 .hero-banner-content{
-  position:absolute;
-  top:50%;left:60px;
-  transform:translateY(-50%);
+  position:relative;
+  z-index:2;
+  padding:100px 60px 80px;
   color:#fff;
+  max-width:640px;
 }
 .hero-tag{
   font-size:11px;letter-spacing:4px;text-transform:uppercase;
@@ -193,37 +197,7 @@ a{text-decoration:none;color:inherit;}
 }
 .project-hdr-l p{color:var(--soft);font-size:15px;max-width:420px;}
 
-/* BEFORE/AFTER GRID */
-.ba-wrap{display:grid;gap:24px;}
-
-.ba-label-row{
-  display:flex;align-items:center;gap:14px;margin-bottom:14px;
-}
-.ba-badge{
-  font-size:10px;letter-spacing:3px;text-transform:uppercase;font-weight:600;
-  padding:5px 14px;
-}
-.ba-badge.before{background:var(--ink);color:#fff;}
-.ba-badge.after{background:var(--gold);color:#fff;}
 .ba-line{flex:1;height:1px;background:var(--line);}
-
-.ba-photos{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:6px;
-}
-.ba-photo{
-  overflow:hidden;
-  aspect-ratio:4/3;
-  background:var(--warm);
-}
-.ba-photo img{
-  width:100%;height:100%;
-  object-fit:cover;display:block;
-  transition:transform .5s ease;
-  filter:saturate(.85);
-}
-.ba-photo:hover img{transform:scale(1.04);}
 
 .single-photo-wrap{margin-bottom:24px;}
 .single-label-row{
@@ -259,7 +233,6 @@ a{text-decoration:none;color:inherit;}
 .pm-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);font-weight:500;}
 .pm-val{font-family:var(--serif);font-size:20px;margin-top:4px;font-weight:600;}
 
-/* BTN STYLES reuse */
 .btn-dark{
   background:var(--ink);color:#fff;
   padding:13px 26px;
@@ -396,13 +369,10 @@ footer{
 }
 .brush-credit-link:hover{color:var(--ink);}
 
-
-
-
 /* MOBILE */
 @media(max-width:900px){
   .nav{padding:0 20px;}
-  .hero-banner-content{left:24px;right:24px;}
+  .hero-banner-content{padding:80px 24px 60px;}
   .services-bar{flex-direction:column;}
   .svc{border-right:none;border-bottom:1px solid rgba(255,255,255,.08);}
   .svc:last-child{border-bottom:none;}
@@ -411,7 +381,6 @@ footer{
   .about-body{padding:40px 24px;}
   .project{padding:56px 24px;}
   .project-hdr{flex-direction:column;align-items:flex-start;gap:14px;}
-  .ba-photos{grid-template-columns:1fr 1fr;}
   .project-meta{flex-direction:column;}
   .pm-item{border-right:none;border-bottom:1px solid var(--line);}
   .pm-item:last-child{border-bottom:none;}
@@ -425,7 +394,6 @@ footer{
   .foot-bottom{flex-direction:column;gap:8px;text-align:center;}
 }
 @media(max-width:560px){
-  .ba-photos{grid-template-columns:1fr;}
   .checks-grid{grid-template-columns:1fr;}
   .hero-btns{flex-direction:column;}
   .btn-d,.btn-g{text-align:center;}
@@ -446,8 +414,10 @@ footer{
 
 <!-- HERO WIDE BANNER -->
 <div class="hero-banner">
-  <img src="https://i.postimg.cc/D0CW9rfT/file-00000000d9f47243a78fa9d87388472c.png" alt="Lúcás Ó Dathaire — Painting and Restoration Dublin">
-  <div class="hero-banner-overlay"></div>
+  <div class="hero-banner-bg">
+    <img src="https://i.postimg.cc/D0CW9rfT/file-00000000d9f47243a78fa9d87388472c.png" alt="Lúcás Ó Dathaire — Painting and Restoration Dublin">
+    <div class="hero-banner-overlay"></div>
+  </div>
   <div class="hero-banner-content reveal">
     <div class="hero-tag">Dublin, Ireland · 15 Years Experience</div>
     <h1>Painting,<br>Repairs &amp;<br><em>Restoration</em></h1>
@@ -505,9 +475,8 @@ footer{
   </div>
 </section>
 
-<!-- PROJECT — BEFORE / AFTER -->
+<!-- PROJECT -->
 <section class="project reveal" id="project">
-
   <div class="project-hdr">
     <div class="project-hdr-l">
       <div class="sec-tag">Recent Project</div>
@@ -517,7 +486,6 @@ footer{
     <a href="#quote" class="btn-light">Book Similar Work</a>
   </div>
 
-  <!-- SINGLE PROJECT PHOTO -->
   <div class="single-photo-wrap">
     <div class="single-label-row">
       <span class="single-label">One of our most recent completed projects</span>
@@ -528,31 +496,16 @@ footer{
     </div>
   </div>
 
-  <!-- PROJECT META -->
   <div class="project-meta">
-    <div class="pm-item">
-      <div class="pm-label">Duration</div>
-      <div class="pm-val">2 Weeks</div>
-    </div>
-    <div class="pm-item">
-      <div class="pm-label">Floors</div>
-      <div class="pm-val">5 Levels</div>
-    </div>
-    <div class="pm-item">
-      <div class="pm-label">Condition</div>
-      <div class="pm-val">Dilapidated</div>
-    </div>
-    <div class="pm-item">
-      <div class="pm-label">Result</div>
-      <div class="pm-val">Bright &amp; Modern</div>
-    </div>
+    <div class="pm-item"><div class="pm-label">Duration</div><div class="pm-val">2 Weeks</div></div>
+    <div class="pm-item"><div class="pm-label">Floors</div><div class="pm-val">5 Levels</div></div>
+    <div class="pm-item"><div class="pm-label">Condition</div><div class="pm-val">Dilapidated</div></div>
+    <div class="pm-item"><div class="pm-label">Result</div><div class="pm-val">Bright &amp; Modern</div></div>
   </div>
-
 </section>
 
 <!-- QUOTE -->
 <section class="quote reveal" id="quote">
-
   <div class="quote-info">
     <div class="sec-tag">Contact</div>
     <h2>Request<br>a Quote</h2>
@@ -565,18 +518,15 @@ footer{
       <div class="cl-item"><div class="cl-mark">✓</div><span>Send photos via WhatsApp or email</span></div>
     </div>
   </div>
-
   <div class="quote-form">
     <div class="form-title">Let's talk</div>
     <div class="form-sub">Quick reply. No pressure.</div>
-
     <div class="frow">
       <div class="field"><label>Name</label><input placeholder="John Smith"></div>
       <div class="field"><label>Phone</label><input placeholder="087 123 4567"></div>
       <div class="field"><label>Location</label><input placeholder="Dublin 9"></div>
       <div class="field"><label>Size</label><input placeholder="2 rooms / 45 m²"></div>
     </div>
-
     <div class="checks-title">What do you need?</div>
     <div class="checks-grid">
       <label class="ck"><input type="checkbox"> Painting</label>
@@ -586,18 +536,15 @@ footer{
       <label class="ck"><input type="checkbox"> Woodwork</label>
       <label class="ck"><input type="checkbox"> Other</label>
     </div>
-
     <div class="field full">
       <label>Message</label>
       <textarea placeholder="Describe the work, condition, timing, or anything important."></textarea>
     </div>
-
     <div class="form-actions">
       <a class="btn-dark" href="mailto:lucasodathaire@gmail.com?subject=Quote%20Request">✉ Email Quote</a>
       <a class="btn-light" href="https://wa.me/353871234567" target="_blank">☏ WhatsApp</a>
     </div>
   </div>
-
 </section>
 
 <!-- BRUSH PHOTO SECTION -->
@@ -613,7 +560,6 @@ footer{
 
 <!-- FOOTER -->
 <footer>
-
   <div class="foot-top">
     <div>
       <div class="foot-brand">Lúcás Ó Dathaire</div>
@@ -643,6 +589,7 @@ footer{
     <span>All work guaranteed.</span>
   </div>
 </footer>
+
 <script>
 const obs = new IntersectionObserver(entries=>{
   entries.forEach(e=>{
@@ -654,4 +601,3 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
 </body>
 </html>
-
